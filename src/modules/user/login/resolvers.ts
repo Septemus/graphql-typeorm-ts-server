@@ -17,6 +17,16 @@ const errorResponse = [
 ];
 
 export const resolvers: ResolverMap = {
+  Feedback:{
+    __resolveType(obj) {
+      if(obj.result) {
+        return 'Success'
+      }
+      else {
+        return 'Error'
+      }
+    }
+  },
   Mutation: {
     login: async (
       _,
@@ -24,7 +34,7 @@ export const resolvers: ResolverMap = {
       { session, redis, req }
     ) => {
       const user = await User.findOne({ where: { email } });
-
+      debugger
       if (!user) {
         return errorResponse;
       }

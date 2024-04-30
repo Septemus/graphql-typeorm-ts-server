@@ -9,7 +9,7 @@ import {
   invalidEmail
 } from "./errorMessages";
 import { registerPasswordValidation } from "../../../yupSchemas";
-// import { createConfirmEmailLink } from "../../utils/createConfirmEmailLink";
+import { createConfirmEmailLink } from "./createConfirmEmailLink";
 // import { sendEmail } from "../../utils/sendEmail";
 
 const schema = yup.object().shape({
@@ -25,8 +25,8 @@ export const resolvers: ResolverMap = {
   Mutation: {
     register: async (
       _,
-      args: GQL.IRegisterOnMutationArguments
-      // { redis, url }
+      args: GQL.IRegisterOnMutationArguments,
+      { redis, url }
     ) => {
       try {
         await schema.validate(args, { abortEarly: false });
@@ -63,8 +63,12 @@ export const resolvers: ResolverMap = {
       //     await createConfirmEmailLink(url, user.id, redis)
       //   );
       // }
-
-      return null;
+      debugger
+      const ret={
+        result:'User created,please confirm to activate:',
+        message:await createConfirmEmailLink(url, user.id, redis)
+      };
+      return ret
     }
   }
 };

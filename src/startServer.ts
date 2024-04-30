@@ -23,12 +23,15 @@ export const startServer = async () => {
 
   const server = new GraphQLServer({
     schema: genSchema() as any,
-    context: ({ request }) => ({
-      redis,
-      url: request.protocol + "://" + request.get("host"),
-      session: request.session,
-      req: request
-    })
+    context: ({ request }) => {
+      // debugger
+      return ({
+        redis,
+        url: request.protocol + "://" + request.get("host"),
+        session: request.session,
+        req: request
+      })
+    }
   });
 
   server.express.use(
@@ -79,7 +82,7 @@ export const startServer = async () => {
     cors,
     port: process.env.NODE_ENV === "test" ? 0 : 4000
   });
-  console.log("Server is running on localhost:4000");
+  console.log("Server is running on http://localhost:4000");
 
   return app;
 };
