@@ -41,3 +41,7 @@ You can start the server with `yarn start` then navigate to `http://localhost:40
 * Locking accounts
 
 
+## Screenshot
+
+![show1](./static/show1.png)
+![show1](./static/show2.png)
