@@ -63,11 +63,13 @@ export const resolvers: ResolverMap = {
       //     await createConfirmEmailLink(url, user.id, redis)
       //   );
       // }
-      debugger
-      const ret={
-        result:'User created,please confirm to activate:',
-        message:await createConfirmEmailLink(url, user.id, redis)
-      };
+
+      const ret=[
+        {
+          result:'User created,please confirm to activate:',
+          message:await createConfirmEmailLink(url, user.id, redis)
+        }
+      ]
       return ret
     }
   }

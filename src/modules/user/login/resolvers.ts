@@ -14,7 +14,8 @@ const errorResponse = [
     path: "email",
     message: invalidLogin
   }
-];
+]
+
 
 export const resolvers: ResolverMap = {
   Feedback:{
@@ -34,7 +35,6 @@ export const resolvers: ResolverMap = {
       { session, redis, req }
     ) => {
       const user = await User.findOne({ where: { email } });
-      debugger
       if (!user) {
         return errorResponse;
       }
@@ -45,7 +45,7 @@ export const resolvers: ResolverMap = {
             path: "email",
             message: confirmEmailError
           }
-        ];
+        ]
       }
 
       if (user.forgotPasswordLocked) {
@@ -54,7 +54,7 @@ export const resolvers: ResolverMap = {
             path: "email",
             message: forgotPasswordLockedError
           }
-        ];
+        ]
       }
 
       const valid = await bcrypt.compare(password, user.password);
@@ -69,7 +69,12 @@ export const resolvers: ResolverMap = {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }
 
-      return null;
+      return [
+        {
+          result:'login success',
+          message:''
+        }
+      ]
     }
   }
 };

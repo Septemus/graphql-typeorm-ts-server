@@ -12,6 +12,7 @@ import { confirmEmail } from "./routes/confirmEmail";
 import { genSchema } from "./utils/genSchema";
 import { redisSessionPrefix } from "./constants";
 import { createTestConn } from "./testUtils/createTestConn";
+import { confirmChangePassword } from "./routes/confirmChangePassword";
 
 const SESSION_SECRET = "ajslkjalksjdfkl";
 const RedisStore = connectRedis(session as any);
@@ -72,6 +73,7 @@ export const startServer = async () => {
   };
 
   server.express.get("/confirm/:id", confirmEmail);
+  server.express.get("/change-password/:id", confirmChangePassword);
 
   if (process.env.NODE_ENV === "test") {
     await createTestConn(true);
@@ -83,6 +85,5 @@ export const startServer = async () => {
     port: process.env.NODE_ENV === "test" ? 0 : 4000
   });
   console.log("Server is running on http://localhost:4000");
-
   return app;
 };
