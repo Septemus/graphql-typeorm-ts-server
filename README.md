@@ -6,24 +6,24 @@ A GraphQL Server boilerplate made with Typescript, PostgreSQL, and Redis
 
 1. Clone project
 ```
-git clone https://github.com/benawad/graphql-ts-server-boilerplate.git
+git clone https://github.com/Septemus/graphql-typeorm-ts-server.git
 ```
 2. cd into folder
 ```
-cd graphql-ts-server-boilerplate
+cd graphql-typeorm-ts-server
 ```
 3. Download dependencies 
 ```
 yarn
 ```
 4. Start PostgreSQL server
-5. Create database called `graphql-ts-server-boilerplate`
+5. Create database called `graphql-typeorm-ts-server`
 ```
-createdb graphql-ts-server-boilerplate
+createdb graphql-typeorm-ts-server
 ```
-6. [Add a user](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e) with the username `postgres` and and no password. (You can change what these values are in the [ormconfig.json](https://github.com/benawad/graphql-ts-server-boilerplate/blob/master/ormconfig.json))
+1. [Add a user](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e) with the username `postgres` and password `postgres`. (You can change what these values are in the [ormconfig.json](https://github.com/Septemus/graphql-typeorm-ts-server/blob/master/ormconfig.json))
 
-7. Install and start Redis
+2. Install and start Redis
 
 ## Usage
 
@@ -39,4 +39,5 @@ You can start the server with `yarn start` then navigate to `http://localhost:40
 * Authentication middleware
 * Rate limiting
 * Locking accounts
-* Testing (probably Jest)
+
+
